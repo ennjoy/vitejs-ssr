@@ -1,5 +1,4 @@
 <template>
-    <RouterLink to="/">Home</RouterLink>|
-    <RouterLink to="/about">About</RouterLink>
+    <Header />
     <RouterView />
 </template>
