@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const fastify = require('fastify')({
-    logger: true
+    logger: false
 })
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
@@ -73,6 +73,8 @@ async function createServer(
             }
 
             const [appHtml, preloadLinks] = await render(url, manifest)
+
+            console.log(appHtml)
 
             const html = template
                 .replace(`<!--preload-links-->`, preloadLinks)
