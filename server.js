@@ -1,9 +1,7 @@
 // @ts-check
 const fs = require('fs')
 const path = require('path')
-const fastify = require('fastify')({
-    logger: false
-})
+const fastify = require('fastify')()
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
@@ -11,6 +9,8 @@ async function createServer(
     root = process.cwd(),
     isProd = process.env.NODE_ENV === 'production'
 ) {
+    await fastify.register(require('fastify-express'))
+    
     const resolve = (p) => path.resolve(__dirname, p)
 
     const indexProd = isProd
@@ -42,11 +42,8 @@ async function createServer(
             }
         })
         // use vite's connect instance as middleware
-        await fastify.register(require('fastify-express'))
         fastify.use(vite.middlewares)
     } else {
-
-        await fastify.register(require('fastify-express'))
         fastify.use(require('compression')())
 
         fastify.use(
