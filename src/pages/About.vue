@@ -11,3 +11,9 @@ h1 {
   color: red;
 }
 </style>
+
+<route lang="yaml">
+name: About
+meta:
+  layout: Default
+</route>

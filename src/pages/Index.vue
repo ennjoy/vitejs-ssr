@@ -9,3 +9,9 @@
 <style scoped>
 
 </style>
+
+<route lang="yaml">
+name: Index
+meta:
+  layout: Default
+</route>
