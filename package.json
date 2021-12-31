@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.1",
-    "@vue/compiler-sfc": "^3.2.26",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
     "fastify": "^3.25.3",

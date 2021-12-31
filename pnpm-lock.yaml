@@ -2,14 +2,12 @@ lockfileVersion: 5.3
 
 specifiers:
   '@vitejs/plugin-vue': ^2.0.1
-  '@vue/compiler-sfc': ^3.2.26
   compression: ^1.7.4
   cross-env: ^7.0.3
   fastify: ^3.25.3
   fastify-express: ^0.3.3
   nodemon: ^2.0.15
   serve-static: ^1.14.2
-  typescript: ^4.5.4
   unplugin-auto-import: ^0.4.20
   unplugin-vue-components: ^0.17.9
   vite: ^2.7.2
@@ -27,22 +25,20 @@ dependencies:
 
 devDependencies:
   '@vitejs/plugin-vue': 2.0.1_vite@2.7.10+vue@3.2.26
-  '@vue/compiler-sfc': 3.2.26
   compression: 1.7.4
   cross-env: 7.0.3
   fastify: 3.25.3
   fastify-express: 0.3.3
   nodemon: 2.0.15
   serve-static: 1.14.2
-  typescript: 4.5.4
   unplugin-auto-import: 0.4.20_vite@2.7.10
   unplugin-vue-components: 0.17.11_vite@2.7.10+vue@3.2.26
   vite: 2.7.10
   vite-plugin-inspect: 0.3.11_vite@2.7.10
-  vite-plugin-pages: 0.18.2_4af608186f67ba0b0ce2a847876acdaf
+  vite-plugin-pages: 0.18.2_vite@2.7.10
   vite-plugin-pwa: 0.11.12_vite@2.7.10
   vite-plugin-vue-layouts: 0.5.0_356ec39c15e6be83b5da8ae2fd7c7b8a
-  vue-tsc: 0.3.0_typescript@4.5.4
+  vue-tsc: 0.3.0
 
 packages:
 
@@ -4114,12 +4110,6 @@ packages:
       is-typedarray: 1.0.0
     dev: true
 
-  /typescript/4.5.4:
-    resolution: {integrity: sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
-
   /ufo/0.7.9:
     resolution: {integrity: sha512-6t9LrLk3FhqTS+GW3IqlITtfRB5JAVr5MMNjpBECfK827W+Vh5Ilw/LhTcHWrt6b3hkeBvcbjx4Ti7QVFzmcww==}
     dev: true
@@ -4313,7 +4303,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pages/0.18.2_4af608186f67ba0b0ce2a847876acdaf:
+  /vite-plugin-pages/0.18.2_vite@2.7.10:
     resolution: {integrity: sha512-Z6ylvMKYSiCngtSpWw9pHN4UzjMQvOG7f0RtLMDKm1LrO5iye7V8BS8Rfdvrl9Nz+D2W+i0pi98+vOL5VsmTvQ==}
     peerDependencies:
       '@vue/compiler-sfc': '>=3'
@@ -4323,7 +4313,6 @@ packages:
         optional: true
     dependencies:
       '@antfu/utils': 0.3.0
-      '@vue/compiler-sfc': 3.2.26
       debug: 4.3.3
       deep-equal: 2.0.5
       fast-glob: 3.2.7
@@ -4523,13 +4512,12 @@ packages:
       vue: 3.2.26
     dev: false
 
-  /vue-tsc/0.3.0_typescript@4.5.4:
+  /vue-tsc/0.3.0:
     resolution: {integrity: sha512-zaDRZBxwRIz1XjhNP92FqugG71st6BUMnA2EwPeXrAyzbEYVRz6TezNFceYl3QYqqN8CtaxbqUhaQEDj/ntoCA==}
     hasBin: true
     peerDependencies:
       typescript: '*'
     dependencies:
-      typescript: 4.5.4
       vscode-vue-languageservice: 0.27.30
     dev: true
 
