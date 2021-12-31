@@ -7,8 +7,6 @@
 
 <br>
 
-**Background**
-
 Hey! For this stack, I used:
 
 * [Fastify](https://github.com/fastify/fastify)
