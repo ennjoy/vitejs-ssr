@@ -27,7 +27,7 @@ export default defineConfig({
     Pages({
       extensions: ['vue'],
       // extendRoute(route, parent) {
-      //   if (route.name === 'Index' || route.name === 'Login' || route.name === 'Signup') {
+      //   if (route.name === 'Index') {
       //     // Index is unauthenticated.
       //     return route
       //   }
