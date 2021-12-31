@@ -1,7 +1,7 @@
-# Chrome Extension (Vue 3 + Vue Router + Typescript + Vite + TailwindCSS)
+# Vite SSR (Vue 3 + Vitejs + Fastify)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rezvitsky/chrome-extension-vuejs/main/preview.png">
+  <img src="https://raw.githubusercontent.com/Rezvitsky/vite-ssr-vue/main/preview.png">
   <br>
 </p>
 
