@@ -1,7 +1,7 @@
 # Vite SSR (Vue 3 + Vitejs + Fastify)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rezvitsky/vite-ssr-vue/main/preview.png">
+  <img src="https://raw.githubusercontent.com/Rezvitsky/vitejs-ssr/main/preview.png">
   <br>
 </p>
 
