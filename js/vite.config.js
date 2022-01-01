@@ -69,8 +69,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Swert',
-        short_name: 'Swert',
+        name: 'Vite App',
+        short_name: 'Vite App',
         theme_color: '#ffffff',
         icons: [
           {
@@ -99,16 +99,6 @@ export default defineConfig({
       enabled: false,
     }),
   ],
-
-  // server: {
-  //   proxy: {
-  //     '/graphql': {
-  //       target: 'https://graphql.swert.ru',
-  //       changeOrigin: true,
-  //       ws: true
-  //     }
-  //   }
-  // },
 
   optimizeDeps: {
     include: [
