@@ -1,12 +1,12 @@
 // Pre-render the app into static HTML.
 // run `yarn generate` and then `dist/static` can be served as a static site.
 
-const fs = require('fs')
-const path = require('path')
-const fg = require('fast-glob')
+import fs from 'fs'
+import path from 'path'
+import fg from 'fast-glob'
 
-const toAbsolute = (p) => path.resolve(__dirname, p)
-function ensureDirExist(filePath) {
+const toAbsolute = (p: string) => path.resolve(__dirname, p)
+function ensureDirExist(filePath: string) {
   const dirname = path.dirname(filePath)
   if (fs.existsSync(dirname))
     return true

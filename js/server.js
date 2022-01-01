@@ -83,7 +83,7 @@ async function createServer(
         }
     })
 
-    return { fastify, vite }
+    return { fastify }
 }
 
 if (!isTest) {

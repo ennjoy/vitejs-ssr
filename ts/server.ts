@@ -1,7 +1,11 @@
-// @ts-check
-const fs = require('fs')
-const path = require('path')
-const fastify = require('fastify')()
+import fs from 'fs'
+import path from 'path'
+import Fastify from 'fastify'
+import type { ViteDevServer } from 'vite'
+
+const fastify: any = Fastify({
+    logger: true
+})
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
@@ -10,8 +14,8 @@ async function createServer(
     isProd = process.env.NODE_ENV === 'production'
 ) {
     await fastify.register(require('fastify-express'))
-    
-    const resolve = (p) => path.resolve(__dirname, p)
+
+    const resolve = (p: string) => path.resolve(__dirname, p)
 
     const indexProd = isProd
         ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8')
@@ -22,10 +26,7 @@ async function createServer(
         require('./dist/client/ssr-manifest.json')
         : {}
 
-    /**
-     * @type {import('vite').ViteDevServer}
-     */
-    let vite
+    let vite: ViteDevServer
 
     if (!isProd) {
         vite = await require('vite').createServer({
@@ -53,7 +54,7 @@ async function createServer(
         )
     }
 
-    fastify.use('*', async (req, res) => {
+    fastify.use('*', async (req: any, res: any) => {
         try {
             const url = req.originalUrl
 
@@ -63,10 +64,11 @@ async function createServer(
                 // always read fresh template in dev
                 template = fs.readFileSync(resolve('index.html'), 'utf-8')
                 template = await vite.transformIndexHtml(url, template)
-                render = (await vite.ssrLoadModule('/src/entry-server.js')).render
+                render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
             } else {
                 template = indexProd
-                render = require('./dist/server/entry-server.js').render
+                // @ts-ignore
+                render = await import('./dist/server/entry-server.js').then(i => i.render)
             }
 
             const [appHtml, preloadLinks] = await render(url, manifest)
@@ -76,18 +78,18 @@ async function createServer(
                 .replace(`<!--app-html-->`, appHtml)
 
             res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
-        } catch (e) {
+        } catch (e: any) {
             vite && vite.ssrFixStacktrace(e)
             console.log(e.stack)
             res.status(500).end(e.stack)
         }
     })
 
-    return { fastify, vite }
+    return { fastify }
 }
 
 if (!isTest) {
-    createServer().then(({ app }) =>
+    createServer().then(({ app }: any) =>
         fastify.listen(3000, () => {
             console.log('http://localhost:3000')
         })

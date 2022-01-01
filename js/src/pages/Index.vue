@@ -1,10 +1,16 @@
+<script setup>
+const count = ref(0)
+
+function click() {
+  count.value++
+}
+</script>
+
 <template>
   <h1>Home</h1>
+  <p>{{ count }}</p>
+  <button @click="click">Click</button>
 </template>
-
-<script setup>
-
-</script>
 
 <style scoped>
 
