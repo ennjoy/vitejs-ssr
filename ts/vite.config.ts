@@ -7,6 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect'
+import Restart from 'vite-plugin-restart'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -98,7 +99,16 @@ export default defineConfig({
       // change this to enable inspect for debugging
       enabled: false,
     }),
+
+    // https://github.com/antfu/vite-plugin-restart
+    Restart({
+      restart: ['../../dist/*.js'],
+    }),
   ],
+
+  build: {
+    minify: false,
+  },
 
   optimizeDeps: {
     include: [
