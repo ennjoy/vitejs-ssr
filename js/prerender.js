@@ -27,7 +27,7 @@ export async function build() {
   const template = fs.readFileSync(toAbsolute('dist/static/index.html'), 'utf-8')
 
   // @ts-ignore
-  const { render } = await import('./dist/server/entry-server.js')
+  const { render } = await require('./dist/server/entry-server.js')
 
   // determine routes to pre-render from src/pages
   const files = await fg('**/*.{vue,md}', {
