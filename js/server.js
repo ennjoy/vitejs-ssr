@@ -2,6 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const fastify = require('fastify')()
+const Youch = require('youch')
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
@@ -75,11 +76,23 @@ async function createServer(
                 .replace(`<!--preload-links-->`, preloadLinks)
                 .replace(`<!--app-html-->`, appHtml)
 
-            res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+            res
+                .status(200)
+                .set({ 'Content-Type': 'text/html' })
+                .end(html)
         } catch (e) {
+            const youch = new Youch(e, req)
+            
             vite && vite.ssrFixStacktrace(e)
             console.log(e.stack)
-            res.status(500).end(e.stack)
+
+            youch
+                .toHTML()
+                .then(() => {
+                    res
+                        .writeHead(200, { 'content-type': 'text/html' })
+                        .end(e.stack)
+                })
         }
     })
 
@@ -89,7 +102,7 @@ async function createServer(
 if (!isTest) {
     createServer().then(({ app }) =>
         fastify.listen(3000, () => {
-            console.log('http://localhost:3000')
+            console.log('Server listenting on localhost:', fastify.server.address().port)
         })
     )
 }

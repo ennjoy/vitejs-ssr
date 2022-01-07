@@ -32,6 +32,6 @@
     "vite-plugin-pwa": "^0.11.11",
     "vite-plugin-restart": "^0.0.2",
     "vite-plugin-vue-layouts": "^0.5.0",
-    "vue-tsc": "^0.3.0"
+    "youch": "^3.0.0"
   }
 }

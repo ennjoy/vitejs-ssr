@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-import Fastify from 'fastify'
+import Fastify, { FastifyRequest } from 'fastify'
+import Youch from 'youch'
 import type { ViteDevServer } from 'vite'
 
 const fastify: any = Fastify({
@@ -54,9 +55,9 @@ async function createServer(
         )
     }
 
-    fastify.use('*', async (req: any, res: any) => {
+    fastify.use('*', async (req: FastifyRequest, res: any) => {
         try {
-            const url = req.originalUrl
+            const url: any = req.raw ? req.raw.url : req.url
 
             let template, render
 
@@ -77,11 +78,23 @@ async function createServer(
                 .replace(`<!--preload-links-->`, preloadLinks)
                 .replace(`<!--app-html-->`, appHtml)
 
-            res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+            res
+                .status(200)
+                .set({ 'Content-Type': 'text/html' })
+                .end(html)
         } catch (e: any) {
+            const youch = new Youch(e, req)
+            
             vite && vite.ssrFixStacktrace(e)
             console.log(e.stack)
-            res.status(500).end(e.stack)
+
+            youch
+                .toHTML()
+                .then(() => {
+                    res
+                        .writeHead(200, { 'content-type': 'text/html' })
+                        .end(e.stack)
+                })
         }
     })
 
@@ -91,7 +104,7 @@ async function createServer(
 if (!isTest) {
     createServer().then(({ app }: any) =>
         fastify.listen(3000, () => {
-            console.log('http://localhost:3000')
+            console.log('Server listenting on localhost:', fastify.server.address().port)
         })
     )
 }
